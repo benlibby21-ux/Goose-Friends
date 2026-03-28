@@ -551,7 +551,7 @@ const BR = "#5D4037";
 const BL = "#8D6E63";
 const CSS = `@keyframes gf{0%,100%{transform:translateY(0)}50%{transform:translateY(-30px)}}@keyframes gi{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}@keyframes gb{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}@keyframes gg{0%,100%{box-shadow:0 0 8px rgba(255,150,100,0.3)}50%{box-shadow:0 0 24px rgba(255,150,100,0.6)}}*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}`;
 
-function tts(t){return new Promise(r=>{if(!window.speechSynthesis){r();return}window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.rate=0.82;u.pitch=1.1;u.onend=r;u.onerror=r;speechSynthesis.speak(u)})}
+function tts(t){return new Promise(r=>{if(!window.speechSynthesis){r();return}window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.rate=0.82;u.pitch=1.1;const voices=window.speechSynthesis.getVoices();const samantha=voices.find(v=>v.name==="Samantha")||voices.find(v=>v.name.includes("Samantha"))||null;if(samantha)u.voice=samantha;u.onend=r;u.onerror=r;speechSynthesis.speak(u)})}
 function playF(u){if(!u)return Promise.resolve();return new Promise(r=>{const a=new Audio(u);a.onended=r;a.onerror=r;a.play().catch(r)})}
 function ld(k){try{const d=localStorage.getItem(k);return d?JSON.parse(d):null}catch{return null}}
 function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}}
