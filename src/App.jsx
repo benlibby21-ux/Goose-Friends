@@ -664,9 +664,10 @@ function AngryActivity({prof,vm,onDone}){
   const BP=VP.angry_breathing;
   useEffect(()=>{
     if(phase!=="breathing")return;
-    if(bPh==="in"){(async()=>{const i=bCy*2;await pv(BP[i]);if(m.current)setTimeout(()=>m.current&&setBPh("out"),3500)})()}
-    if(bPh==="out"){(async()=>{const i=bCy*2+1;await pv(BP[i]);if(m.current)setTimeout(()=>{if(!m.current)return;const n=bCy+1;setBCy(n);if(n>=3)setPhase("done");else setBPh("in")},3500)})()}
-  },[bPh,phase]);
+    if(bPh==="in"){(async()=>{const i=bCy*2;await pv(BP[i]);if(m.current)setTimeout(()=>{if(!m.current)return;setBPh("out")},3500)})()}
+    if(bPh==="out"){(async()=>{const i=bCy*2+1;await pv(BP[i]);if(m.current)setTimeout(()=>{if(!m.current)return;const n=bCy+1;if(n>=3){setPhase("done")}else{setBCy(n);setBPh("breathIn")}},3500)})()}
+    if(bPh==="breathIn"){setBPh("in")}
+  },[bPh,bCy,phase]);
 
   // ── Squeeze sub-activity ──
   const[sPh,setSPh]=useState("start");
@@ -675,9 +676,10 @@ function AngryActivity({prof,vm,onDone}){
   useEffect(()=>{
     if(phase!=="squeeze")return;
     if(sPh==="start"){(async()=>{await pv(SP[0]);if(m.current)setSPh("sq")})()}
-    if(sPh==="sq"){(async()=>{const i=1+sCy*2;await pv(SP[i]);if(m.current)setTimeout(()=>m.current&&setSPh("rel"),4000)})()}
-    if(sPh==="rel"){(async()=>{const i=2+sCy*2;await pv(SP[i]);if(m.current)setTimeout(()=>{if(!m.current)return;const n=sCy+1;setSCy(n);if(n>=2)setPhase("done");else setSPh("sq")},4000)})()}
-  },[sPh,phase]);
+    if(sPh==="sq"){(async()=>{const i=1+sCy*2;await pv(SP[i]);if(m.current)setTimeout(()=>{if(!m.current)return;setSPh("rel")},4000)})()}
+    if(sPh==="rel"){(async()=>{const i=2+sCy*2;await pv(SP[i]);if(m.current)setTimeout(()=>{if(!m.current)return;const n=sCy+1;if(n>=2){setPhase("done")}else{setSCy(n);setSPh("nextSq")}},4000)})()}
+    if(sPh==="nextSq"){setSPh("sq")}
+  },[sPh,sCy,phase]);
 
   // ── Counting sub-activity ──
   const[cNum,setCNum]=useState(0);
@@ -685,7 +687,7 @@ function AngryActivity({prof,vm,onDone}){
   useEffect(()=>{
     if(phase!=="counting")return;
     if(cNum===0){(async()=>{await pv(CP[0]);if(m.current)setCNum(1)})()}
-    if(cNum>=1&&cNum<=5){(async()=>{await pv(CP[cNum]);if(m.current)setTimeout(()=>{if(!m.current)return;if(cNum>=5)setPhase("done");else setCNum(cNum+1)},2000)})()}
+    if(cNum>=1&&cNum<=5){(async()=>{await pv(CP[cNum]);if(m.current)setTimeout(()=>{if(!m.current)return;if(cNum>=5){setPhase("done")}else{setCNum(cNum+1)}},2000)})()}
   },[cNum,phase]);
 
   // Done
@@ -936,10 +938,11 @@ function Squeeze({prof,vm,onDone}){
   useEffect(()=>()=>{m.current=false},[]);
   useEffect(()=>{(async()=>{await pv(P[0]);if(m.current)setPh("sq")})()},[]);
   useEffect(()=>{
-    if(ph==="sq"){(async()=>{await pv(P[1]);setTimeout(()=>m.current&&setPh("re"),4000)})()}
-    if(ph==="re"){(async()=>{await pv(P[2]);setTimeout(()=>{if(!m.current)return;const n=cy+1;setCy(n);setPh(n>=3?"done":"sq")},4000)})()}
+    if(ph==="sq"){(async()=>{await pv(P[1]);setTimeout(()=>{if(!m.current)return;setPh("re")},4000)})()}
+    if(ph==="re"){(async()=>{await pv(P[2]);setTimeout(()=>{if(!m.current)return;const n=cy+1;if(n>=3){setPh("done")}else{setCy(n);setPh("nextSq")}},4000)})()}
+    if(ph==="nextSq"){setPh("sq")}
     if(ph==="done")pv(P[3]);
-  },[ph]);
+  },[ph,cy]);
   if(ph==="done") return <DoneScreen prof={prof} onDone={onDone} bg="linear-gradient(160deg,#FFF6EC,#EEFFF3)" pc="#FFD0A0"/>;
   return <Pg bg="linear-gradient(160deg,#FFF6EC,#FFECD6)" pc="#FFD0A0"><div style={{animation:"gi .5s ease"}}>
     <Animal id={prof.animal.id} emotion="overwhelmed" size={100}/>
