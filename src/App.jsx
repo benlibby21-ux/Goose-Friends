@@ -487,8 +487,8 @@ const GROUND = [
 ];
 
 // Audio: set USE_PRE=true & AUDIO_URL when you have files named {id}.mp3
-const AUDIO_URL = "./audio/";
-const USE_PRE = false;
+const AUDIO_URL = "/audio/";
+const USE_PRE = true;
 
 const VP = {
   angry_intro:{id:"angry_intro",label:"😠 Intro",text:"Oh no, {buddy} is feeling angry! What should we do to help?"},
