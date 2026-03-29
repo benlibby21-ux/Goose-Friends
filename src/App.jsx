@@ -759,12 +759,14 @@ function AngryActivity({ prof, vm, onDone }) {
       ]);
     } else if (key === "counting") {
       start([
-        { prompt: CP[0], delay: 500 },
-        { prompt: CP[1], delay: 2000 }, { prompt: CP[2], delay: 2000 },
-        { prompt: CP[3], delay: 2000 }, { prompt: CP[4], delay: 2000 },
-        { prompt: CP[5], delay: 1500 },
-      ]);
-    }
+      { prompt: CP[0], delay: 300 },
+      { prompt: CP[1], delay: 600 },
+      { prompt: CP[2], delay: 600 },
+      { prompt: CP[3], delay: 600 },
+      { prompt: CP[4], delay: 600 },
+      { prompt: CP[5], delay: 500 },
+    ]);
+    }   
   };
 
   const breathStep = chosen === "breathing" ? step : -1;
@@ -1018,14 +1020,14 @@ function Squeeze({prof,vm,onDone}){
   useEffect(()=>()=>{m.current=false},[]);
   useEffect(()=>{(async()=>{await pv(P[0]);if(m.current)setPh("sq")})()},[]);
   useEffect(()=>{
-    if(ph==="sq"){(async()=>{await pv(P[1]);setTimeout(()=>m.current&&setPh("re"),4000)})()}
-    if(ph==="re"){(async()=>{await pv(P[2]);setTimeout(()=>{if(!m.current)return;const n=cy+1;setCy(n);setPh(n>=3?"done":"sq")},4000)})()}
+    if(ph==="sq"){(async()=>{await pv(P[1]);setTimeout(()=>m.current&&setPh("re"),2000)})()}
+    if(ph==="re"){(async()=>{await pv(P[2]);setTimeout(()=>{if(!m.current)return;const n=cy+1;setCy(n);setPh(n>=3?"done":"sq")},2000)})()}
     if(ph==="done")pv(P[3]);
   },[ph]);
   if(ph==="done") return <DoneScreen prof={prof} onDone={onDone} bg="linear-gradient(160deg,#FFF6EC,#EEFFF3)" pc="#FFD0A0"/>;
   return <Pg bg="linear-gradient(160deg,#FFF6EC,#FFECD6)" pc="#FFD0A0"><div style={{animation:"gi .5s ease"}}>
     <Animal id={prof.animal.id} emotion="overwhelmed" size={100}/>
-    <p style={{fontSize:24,color:"#E0922E",fontWeight:800,margin:"12px 0 16px"}}>{ph==="sq"?"✊ Squeeze tight!":ph==="re"?"🤲 Let it go...":"Getting ready..."}</p><div style={{fontSize:80,transition:"transform 3.5s ease",transform:ph==="sq"?"scale(0.7)":"scale(1.2)"}}>{ph==="sq"?"✊":"🤲"}</div><p style={{fontSize:15,color:BL,marginTop:16}}>{Math.min(cy+1,3)} of 3</p>
+    <p style={{fontSize:24,color:"#E0922E",fontWeight:800,margin:"12px 0 16px"}}>{ph==="sq"?"✊ Squeeze tight!":ph==="re"?"🤲 Let it go...":"Getting ready..."}</p><div style={{fontSize:80,transition:"transform 2.5s ease",transform:ph==="sq"?"scale(0.7)":"scale(1.2)"}}>{ph==="sq"?"✊":"🤲"}</div><p style={{fontSize:15,color:BL,marginTop:16}}>{Math.min(cy+1,3)} of 3</p>
   </div></Pg>;
 }
 
