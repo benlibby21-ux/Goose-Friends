@@ -9,6 +9,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 function BearSVG({ emotion = "neutral", size = 160 }) {
   const isHappy = emotion === "happy" || emotion === "calm";
   const isScared = emotion === "scared";
+  const isListening = emotion === "listening";
   return (
     <svg viewBox="0 0 100 100" width={size} height={size}>
       <style>{`.bb{animation:bb 3s ease-in-out infinite}@keyframes bb{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.5px)}}.be{animation:be 4s ease-in-out infinite;transform-origin:50px 15px}@keyframes be{0%,100%{transform:rotate(0)}25%{transform:rotate(3deg)}75%{transform:rotate(-3deg)}}`}</style>
@@ -34,12 +35,14 @@ function BearSVG({ emotion = "neutral", size = 160 }) {
         {emotion==="angry" && <><line x1="31" y1="30" x2="42" y2="33" stroke="#3D2516" strokeWidth="2" strokeLinecap="round"/><line x1="58" y1="33" x2="69" y2="30" stroke="#3D2516" strokeWidth="2" strokeLinecap="round"/></>}
         {emotion==="sad" && <ellipse cx="65" cy="43" rx="2" ry="3.5" fill="#7CB8E8" opacity="0.7"/>}
         {emotion==="overwhelmed" && <><circle cx="38" cy="38" r="5" fill="none" stroke="#3D2516" strokeWidth="1.5"/><circle cx="62" cy="38" r="5" fill="none" stroke="#3D2516" strokeWidth="1.5"/></>}
+        {emotion==="listening" && <><line x1="32" y1="32" x2="40" y2="30" stroke="#3D2516" strokeWidth="2" strokeLinecap="round"/></>}
         {emotion==="happy" && <path d="M42 56 Q50 63 58 56" fill="none" stroke="#3D2516" strokeWidth="2" strokeLinecap="round"/>}
         {emotion==="sad" && <path d="M42 58 Q50 53 58 58" fill="none" stroke="#3D2516" strokeWidth="2" strokeLinecap="round"/>}
         {emotion==="angry" && <path d="M43 57 L57 57" stroke="#3D2516" strokeWidth="2" strokeLinecap="round"/>}
         {emotion==="scared" && <ellipse cx="50" cy="57" rx="5" ry="4" fill="#3D2516"/>}
         {(emotion==="neutral"||emotion==="calm") && <path d="M44 55 Q50 59 56 55" fill="none" stroke="#3D2516" strokeWidth="1.5" strokeLinecap="round"/>}
         {emotion==="overwhelmed" && <ellipse cx="50" cy="57" rx="4" ry="3" fill="#3D2516"/>}
+        {emotion==="listening" && <path d="M44 57 Q48 55 56 57" fill="none" stroke="#3D2516" strokeWidth="1.8" strokeLinecap="round"/>}
         {isHappy && <><ellipse cx="30" cy="48" rx="6" ry="3" fill="#FFB0A0" opacity="0.4"/><ellipse cx="70" cy="48" rx="6" ry="3" fill="#FFB0A0" opacity="0.4"/></>}
         <ellipse cx="26" cy="72" rx="6" ry="10" fill="#C4956A" transform="rotate(-15 26 72)"/>
         <ellipse cx="74" cy="72" rx="6" ry="10" fill="#C4956A" transform="rotate(15 74 72)"/>
@@ -81,12 +84,14 @@ function BunnySVG({ emotion = "neutral", size = 160 }) {
         {emotion==="angry" && <><line x1="34" y1="34" x2="44" y2="37" stroke="#4A2040" strokeWidth="2" strokeLinecap="round"/><line x1="56" y1="37" x2="66" y2="34" stroke="#4A2040" strokeWidth="2" strokeLinecap="round"/></>}
         {emotion==="sad" && <ellipse cx="63" cy="47" rx="1.5" ry="2.5" fill="#7CB8E8" opacity="0.6"/>}
         {emotion==="overwhelmed" && <><circle cx="40" cy="42" r="4" fill="none" stroke="#4A2040" strokeWidth="1.2"/><circle cx="60" cy="42" r="4" fill="none" stroke="#4A2040" strokeWidth="1.2"/></>}
+        {emotion==="listening" && <><line x1="34" y1="35" x2="43" y2="33" stroke="#4A2040" strokeWidth="2" strokeLinecap="round"/></>}
         {emotion==="happy" && <path d="M44 56 Q50 62 56 56" fill="none" stroke="#4A2040" strokeWidth="1.8" strokeLinecap="round"/>}
         {emotion==="sad" && <path d="M44 58 Q50 54 56 58" fill="none" stroke="#4A2040" strokeWidth="1.8" strokeLinecap="round"/>}
         {emotion==="angry" && <path d="M44 57 L56 57" stroke="#4A2040" strokeWidth="1.8" strokeLinecap="round"/>}
         {emotion==="scared" && <ellipse cx="50" cy="57" rx="4" ry="3.5" fill="#4A2040"/>}
         {(emotion==="neutral"||emotion==="calm") && <path d="M46 55 Q50 58 54 55" fill="none" stroke="#4A2040" strokeWidth="1.3" strokeLinecap="round"/>}
         {emotion==="overwhelmed" && <ellipse cx="50" cy="57" rx="3" ry="2.5" fill="#4A2040"/>}
+        {emotion==="listening" && <path d="M44 57 Q48 55 56 57" fill="none" stroke="#4A2040" strokeWidth="1.5" strokeLinecap="round"/>}
         <circle cx="50" cy="98" r="5" fill="#FFF0F5"/>
         <ellipse cx="36" cy="96" rx="7" ry="4" fill="#E8A0BF"/>
         <ellipse cx="64" cy="96" rx="7" ry="4" fill="#E8A0BF"/>
@@ -297,6 +302,7 @@ function BearFace({ emotion = "neutral", size = 80 }) {
       {emotion==="angry" && <path d="M43 57 L57 57" stroke="#3D2516" strokeWidth="2.2" strokeLinecap="round"/>}
       {emotion==="scared" && <ellipse cx="50" cy="57" rx="5" ry="4.5" fill="#3D2516"/>}
       {(emotion==="neutral"||emotion==="calm") && <path d="M44 55 Q50 59 56 55" fill="none" stroke="#3D2516" strokeWidth="1.8" strokeLinecap="round"/>}
+      {emotion==="listening" && <><line x1="31" y1="31" x2="40" y2="29" stroke="#3D2516" strokeWidth="2.2" strokeLinecap="round"/><path d="M44 57 Q48 55 56 57" fill="none" stroke="#3D2516" strokeWidth="2" strokeLinecap="round"/></>}
       {isHappy && <><ellipse cx="30" cy="48" rx="6" ry="3" fill="#FFB0A0" opacity="0.45"/><ellipse cx="70" cy="48" rx="6" ry="3" fill="#FFB0A0" opacity="0.45"/></>}
     </svg>
   );
@@ -334,6 +340,7 @@ function BunnyFace({ emotion = "neutral", size = 80 }) {
       {emotion==="angry" && <path d="M44 57 L56 57" stroke="#4A2040" strokeWidth="2" strokeLinecap="round"/>}
       {emotion==="scared" && <ellipse cx="50" cy="57" rx="4" ry="3.5" fill="#4A2040"/>}
       {(emotion==="neutral"||emotion==="calm") && <path d="M46 55 Q50 58 54 55" fill="none" stroke="#4A2040" strokeWidth="1.5" strokeLinecap="round"/>}
+      {emotion==="listening" && <><line x1="34" y1="35" x2="43" y2="33" stroke="#4A2040" strokeWidth="2" strokeLinecap="round"/><path d="M44 57 Q48 55 56 57" fill="none" stroke="#4A2040" strokeWidth="1.8" strokeLinecap="round"/></>}
     </svg>
   );
 }
@@ -370,6 +377,7 @@ function KittyFace({ emotion = "neutral", size = 80 }) {
       {emotion==="angry" && <path d="M44 53 L56 53" stroke="#5A3010" strokeWidth="2" strokeLinecap="round"/>}
       {emotion==="scared" && <ellipse cx="50" cy="53" rx="3.5" ry="3" fill="#5A3010"/>}
       {(emotion==="neutral"||emotion==="calm") && <path d="M47 51 Q50 53 53 51" fill="none" stroke="#5A3010" strokeWidth="1.5" strokeLinecap="round"/>}
+      {emotion==="listening" && <><line x1="33" y1="33" x2="43" y2="31" stroke="#5A3010" strokeWidth="2" strokeLinecap="round"/><path d="M44 53 Q48 51 56 53" fill="none" stroke="#5A3010" strokeWidth="1.8" strokeLinecap="round"/></>}
       {isHappy && <><ellipse cx="30" cy="46" rx="5" ry="3" fill="#FFB0A0" opacity="0.4"/><ellipse cx="70" cy="46" rx="5" ry="3" fill="#FFB0A0" opacity="0.4"/></>}
     </svg>
   );
@@ -403,6 +411,7 @@ function PuppyFace({ emotion = "neutral", size = 80 }) {
       {emotion==="angry" && <path d="M44 55 L56 55" stroke="#3D2000" strokeWidth="1.8" strokeLinecap="round"/>}
       {emotion==="scared" && <ellipse cx="50" cy="55" rx="4" ry="3.5" fill="#3D2000"/>}
       {(emotion==="neutral"||emotion==="calm") && <path d="M46 53 Q50 56 54 53" fill="none" stroke="#3D2000" strokeWidth="1.5" strokeLinecap="round"/>}
+      {emotion==="listening" && <><line x1="34" y1="34" x2="43" y2="32" stroke="#3D2000" strokeWidth="2.2" strokeLinecap="round"/><path d="M44 55 Q48 53 56 55" fill="none" stroke="#3D2000" strokeWidth="1.8" strokeLinecap="round"/></>}
       {isHappy && <><ellipse cx="30" cy="47" rx="5" ry="3" fill="#FFB0A0" opacity="0.4"/><ellipse cx="70" cy="47" rx="5" ry="3" fill="#FFB0A0" opacity="0.4"/></>}
     </svg>
   );
@@ -430,6 +439,7 @@ function DuckFace({ emotion = "neutral", size = 80 }) {
       {emotion==="angry" && <><line x1="34" y1="28" x2="44" y2="31" stroke="#2A1800" strokeWidth="2.2" strokeLinecap="round"/><line x1="56" y1="31" x2="66" y2="28" stroke="#2A1800" strokeWidth="2.2" strokeLinecap="round"/></>}
       {emotion==="sad" && <ellipse cx="63" cy="40" rx="2" ry="3" fill="#7CB8E8" opacity="0.6"/>}
       {emotion==="overwhelmed" && <><circle cx="40" cy="36" r="3.5" fill="none" stroke="#2A1800" strokeWidth="1.5"/><circle cx="60" cy="36" r="3.5" fill="none" stroke="#2A1800" strokeWidth="1.5"/></>}
+      {emotion==="listening" && <><line x1="34" y1="28" x2="43" y2="27" stroke="#2A1800" strokeWidth="2" strokeLinecap="round"/></>}
       {isHappy && <><ellipse cx="32" cy="42" rx="5" ry="3" fill="#FFB0A0" opacity="0.4"/><ellipse cx="68" cy="42" rx="5" ry="3" fill="#FFB0A0" opacity="0.4"/></>}
     </svg>
   );
@@ -459,6 +469,7 @@ function OwlFace({ emotion = "neutral", size = 80 }) {
       {emotion==="sad" && <ellipse cx="66" cy="43" rx="2" ry="3" fill="#7CB8E8" opacity="0.6"/>}
       {emotion==="overwhelmed" && <><circle cx="38" cy="39" r="4.5" fill="none" stroke="#2A1800" strokeWidth="1.5"/><circle cx="62" cy="39" r="4.5" fill="none" stroke="#2A1800" strokeWidth="1.5"/></>}
       <polygon points="47,46 53,46 50,52" fill="#E8A040"/>
+      {emotion==="listening" && <><line x1="30" y1="29" x2="40" y2="27" stroke="#2A1800" strokeWidth="2" strokeLinecap="round"/></>}
       {isHappy && <><ellipse cx="28" cy="46" rx="5" ry="3" fill="#FFB0A0" opacity="0.35"/><ellipse cx="72" cy="46" rx="5" ry="3" fill="#FFB0A0" opacity="0.35"/></>}
     </svg>
   );
@@ -474,7 +485,7 @@ const EMOTIONS = [
   { id:"angry", label:"Angry", color:"#E8625E", bg:"#FFF0EF", activity:"breathing" },
   { id:"sad", label:"Sad", color:"#5B8BD4", bg:"#EFF4FF", activity:"hug" },
   { id:"scared", label:"Scared", color:"#9B6DD7", bg:"#F4EEFF", activity:"grounding" },
-  { id:"happy", label:"Happy", color:"#5BAE7C", bg:"#EEFFF3", activity:"celebrate_happy" },
+  { id:"listening", label:"Not\nListening", color:"#E8A033", bg:"#FFF8F0", activity:"listening" },
 ];
 
 const GROUND = [
@@ -535,13 +546,13 @@ const VP = {
     {id:"over_release",label:"🤲 Release",text:"Now let go... let all those big feelings float away."},
     {id:"over_done",label:"⭐ All done",text:"Amazing, {name}! {buddy} feels so much lighter now!"},
   ],
-  happy:[
-    {id:"happy_intro",label:"😊 Celebrate",text:"{buddy} is feeling happy! That's so wonderful, {name}!"},
-    {id:"happy_done",label:"⭐ Hooray",text:"Let's do a happy dance! You and {buddy} are doing amazing!"},
-  ],
-  calm:[
-    {id:"calm_intro",label:"😌 Celebrate",text:"{buddy} is feeling nice and calm. What a peaceful moment."},
-    {id:"calm_done",label:"⭐ Wonderful",text:"It feels so good to be calm, doesn't it {name}? You and {buddy} are wonderful."},
+  listening:[
+    {id:"listen_intro",label:"👂 Intro",text:"{buddy} isn't listening right now. Can you help them learn?"},
+    {id:"listen_eyes",label:"👀 Eyes",text:"Can you tell {buddy}... first we use our eyes to look at the person talking?"},
+    {id:"listen_ears",label:"👂 Ears",text:"Great! Now tell {buddy}... we use our ears to hear the words."},
+    {id:"listen_body",label:"🧍 Body",text:"And tell {buddy}... we keep our body still and calm."},
+    {id:"listen_try",label:"🌟 Try it",text:"Now let's practice! Can you show {buddy} your best listening? Look at me with your eyes, open your ears, and keep your body still!"},
+    {id:"listen_done",label:"⭐ All done",text:"Wow, {name}! You're such an amazing listener! {buddy} learned so much from you!"},
   ],
 };
 
@@ -636,146 +647,179 @@ function Home({prof,onEmo,onDash,onVoice}){
 }
 
 // ─── Activities ──────────────────────────────────────────────
+
+// Step-queue runner: plays a sequence of {prompt, delay} steps reliably
+function useStepQueue(playVoice) {
+  const [step, setStep] = useState(-1);
+  const queueRef = useRef([]);
+  const [done, setDone] = useState(false);
+  const m = useRef(true);
+  const timerRef = useRef(null);
+  useEffect(() => () => { m.current = false; clearTimeout(timerRef.current); }, []);
+
+  const start = useCallback((steps) => {
+    queueRef.current = steps;
+    setDone(false);
+    setStep(0);
+  }, []);
+
+  useEffect(() => {
+    const queue = queueRef.current;
+    if (step < 0 || !queue.length) return;
+    if (step >= queue.length) { setDone(true); return; }
+    const item = queue[step];
+    if (!item) return;
+    let cancelled = false;
+    (async () => {
+      if (item.prompt) await playVoice(item.prompt);
+      if (cancelled || !m.current) return;
+      const delay = item.delay || 0;
+      if (delay > 0) {
+        timerRef.current = setTimeout(() => { if (!cancelled && m.current) setStep(s => s + 1); }, delay);
+      } else {
+        setStep(s => s + 1);
+      }
+    })();
+    return () => { cancelled = true; clearTimeout(timerRef.current); };
+  }, [step]);
+
+  return { step, done, start };
+}
+
 const ANGRY_ACTIVITIES = [
-  { key:"breathing", icon:"🌸", label:"Smell\nFlowers", color:"#FF8A80" },
-  { key:"squeeze", icon:"✊", label:"Squeeze\n& Release", color:"#FFB060" },
-  { key:"counting", icon:"🔢", label:"Count\nto Five", color:"#A0C4FF" },
+  { key: "breathing", icon: "🌸", label: "Smell\nFlowers", color: "#FF8A80" },
+  { key: "squeeze", icon: "✊", label: "Squeeze\n& Release", color: "#FFB060" },
+  { key: "counting", icon: "🔢", label: "Count\nto Five", color: "#A0C4FF" },
 ];
 
-function AngryActivity({prof,vm,onDone}){
-  const pv=useV(prof,vm);
-  const[phase,setPhase]=useState("intro"); // intro, pick, breathing, squeeze, counting, done
-  const[options]=useState(()=>{
-    const shuffled=[...ANGRY_ACTIVITIES].sort(()=>Math.random()-0.5);
-    return shuffled.slice(0,2);
-  });
-  const[cy,setCy]=useState(0);
-  const m=useRef(true);
-  useEffect(()=>()=>{m.current=false},[]);
+function AngryActivity({ prof, vm, onDone }) {
+  const pv = useV(prof, vm);
+  const [phase, setPhase] = useState("intro");
+  const [chosen, setChosen] = useState(null);
+  const { step, done, start } = useStepQueue(pv);
+  const m = useRef(true);
+  useEffect(() => () => { m.current = false }, []);
 
-  // Intro
-  useEffect(()=>{(async()=>{await pv(VP.angry_intro);if(m.current)setPhase("pick")})()},[]);
+  useEffect(() => { (async () => { await pv(VP.angry_intro); if (m.current) setPhase("pick"); })() }, []);
+  useEffect(() => { if (done) { (async () => { await pv(VP.angry_done); if (m.current) setPhase("done"); })(); } }, [done]);
 
-  const pick=(key)=>setPhase(key);
+  const pick = (key) => {
+    setChosen(key);
+    setPhase("activity");
+    const BP = VP.angry_breathing;
+    const SP = VP.angry_squeeze;
+    const CP = VP.angry_counting;
+    if (key === "breathing") {
+      start([
+        { prompt: BP[0], delay: 3500 }, { prompt: BP[1], delay: 3500 },
+        { prompt: BP[2], delay: 3500 }, { prompt: BP[3], delay: 3500 },
+        { prompt: BP[4], delay: 3500 }, { prompt: BP[5], delay: 3500 },
+      ]);
+    } else if (key === "squeeze") {
+      start([
+        { prompt: SP[0], delay: 500 },
+        { prompt: SP[1], delay: 4000 }, { prompt: SP[2], delay: 4000 },
+        { prompt: SP[3], delay: 4000 }, { prompt: SP[4], delay: 2000 },
+      ]);
+    } else if (key === "counting") {
+      start([
+        { prompt: CP[0], delay: 500 },
+        { prompt: CP[1], delay: 2000 }, { prompt: CP[2], delay: 2000 },
+        { prompt: CP[3], delay: 2000 }, { prompt: CP[4], delay: 2000 },
+        { prompt: CP[5], delay: 1500 },
+      ]);
+    }
+  };
 
-  // ── Breathing sub-activity ──
-  const[bPh,setBPh]=useState("in");
-  const[bCy,setBCy]=useState(0);
-  const BP=VP.angry_breathing;
-  useEffect(()=>{
-    if(phase!=="breathing")return;
-    if(bPh==="in"){(async()=>{const i=bCy*2;await pv(BP[i]);if(m.current)setTimeout(()=>{if(!m.current)return;setBPh("out")},3500)})()}
-    if(bPh==="out"){(async()=>{const i=bCy*2+1;await pv(BP[i]);if(m.current)setTimeout(()=>{if(!m.current)return;const n=bCy+1;if(n>=3){setPhase("done")}else{setBCy(n);setBPh("breathIn")}},3500)})()}
-    if(bPh==="breathIn"){setBPh("in")}
-  },[bPh,bCy,phase]);
+  const breathStep = chosen === "breathing" ? step : -1;
+  const isSmell = breathStep >= 0 && breathStep % 2 === 0;
+  const [circleSize, setCircleSize] = useState(80);
+  useEffect(() => {
+    if (chosen !== "breathing" || phase !== "activity") return;
+    if (breathStep < 0) return;
+    if (isSmell) {
+      // Start small, grow big (breathing in)
+      setCircleSize(80);
+      const t = setTimeout(() => setCircleSize(180), 50);
+      return () => clearTimeout(t);
+    } else {
+      // Start big, shrink small (breathing out)
+      setCircleSize(180);
+      const t = setTimeout(() => setCircleSize(80), 50);
+      return () => clearTimeout(t);
+    }
+  }, [breathStep, chosen, phase]);
+  const squeezeStep = chosen === "squeeze" ? step : -1;
+  const isSqueeze = squeezeStep === 1 || squeezeStep === 3;
+  const countStep = chosen === "counting" ? step : -1;
+  const countNum = countStep >= 1 ? Math.min(countStep, 5) : 0;
 
-  // ── Squeeze sub-activity ──
-  const[sPh,setSPh]=useState("start");
-  const[sCy,setSCy]=useState(0);
-  const SP=VP.angry_squeeze;
-  useEffect(()=>{
-    if(phase!=="squeeze")return;
-    if(sPh==="start"){(async()=>{await pv(SP[0]);if(m.current)setSPh("sq")})()}
-    if(sPh==="sq"){(async()=>{const i=1+sCy*2;await pv(SP[i]);if(m.current)setTimeout(()=>{if(!m.current)return;setSPh("rel")},4000)})()}
-    if(sPh==="rel"){(async()=>{const i=2+sCy*2;await pv(SP[i]);if(m.current)setTimeout(()=>{if(!m.current)return;const n=sCy+1;if(n>=2){setPhase("done")}else{setSCy(n);setSPh("nextSq")}},4000)})()}
-    if(sPh==="nextSq"){setSPh("sq")}
-  },[sPh,sCy,phase]);
+  if (phase === "done") return <DoneScreen prof={prof} onDone={onDone} bg="linear-gradient(160deg,#FFF0EF,#EEFFF3)" pc="#A0E8B0" />;
+  if (phase === "intro") return <IntroScreen prof={prof} emotion="angry" bg="linear-gradient(160deg,#FFF0EF,#FFE8E6)" pc="#FFB0A0" />;
 
-  // ── Counting sub-activity ──
-  const[cNum,setCNum]=useState(0);
-  const CP=VP.angry_counting;
-  useEffect(()=>{
-    if(phase!=="counting")return;
-    if(cNum===0){(async()=>{await pv(CP[0]);if(m.current)setCNum(1)})()}
-    if(cNum>=1&&cNum<=5){(async()=>{await pv(CP[cNum]);if(m.current)setTimeout(()=>{if(!m.current)return;if(cNum>=5){setPhase("done")}else{setCNum(cNum+1)}},2000)})()}
-  },[cNum,phase]);
+  return <Pg bg="linear-gradient(160deg,#FFF0EF,#FFE8E6)" pc="#FFB0A0"><div style={{ animation: "gi .5s ease", display: "flex", flexDirection: "column", alignItems: "center" }}>
+    <Animal id={prof.animal.id} emotion="angry" size={phase === "pick" ? 120 : 100} />
 
-  // Done
-  useEffect(()=>{if(phase==="done")pv(VP.angry_done)},[phase]);
-
-  const bSz=bPh==="in"?180:bPh==="out"?90:140;
-
-  // Done - early return
-  if(phase==="done") return <DoneScreen prof={prof} onDone={onDone} bg="linear-gradient(160deg,#FFF0EF,#EEFFF3)" pc="#A0E8B0"/>;
-  // Intro - early return
-  if(phase==="intro") return <IntroScreen prof={prof} emotion="angry" bg="linear-gradient(160deg,#FFF0EF,#FFE8E6)" pc="#FFB0A0"/>;
-
-  return <Pg bg="linear-gradient(160deg,#FFF0EF,#FFE8E6)" pc="#FFB0A0"><div style={{animation:"gi .5s ease",display:"flex",flexDirection:"column",alignItems:"center"}}>
-    <Animal id={prof.animal.id} emotion="angry" size={phase==="pick"?120:100}/>
-
-    {/* Choice screen */}
-    {phase==="pick"&&<>
-      <p style={{fontSize:20,color:"#C0524E",fontWeight:800,margin:"16px 0 20px",textAlign:"center"}}>
-        What should we try?
-      </p>
-      <div style={{display:"flex",gap:16,justifyContent:"center"}}>
-        {options.map(opt=>(
-          <button key={opt.key} onClick={()=>pick(opt.key)} style={{
-            background:"#FFFAF5",border:`4px solid ${opt.color}`,borderRadius:24,
-            padding:"20px 16px",cursor:"pointer",transition:"transform .12s",
-            display:"flex",flexDirection:"column",alignItems:"center",gap:8,
-            width:130,
+    {phase === "pick" && <>
+      <p style={{ fontSize: 20, color: "#C0524E", fontWeight: 800, margin: "16px 0 20px", textAlign: "center" }}>What should we try?</p>
+      <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
+        {ANGRY_ACTIVITIES.map(opt => (
+          <button key={opt.key} onClick={() => pick(opt.key)} style={{
+            background: "#FFFAF5", border: `4px solid ${opt.color}`, borderRadius: 24,
+            padding: "18px 12px", cursor: "pointer", transition: "transform .12s",
+            display: "flex", flexDirection: "column", alignItems: "center", gap: 8, width: 110,
           }}
-            onPointerDown={e=>{e.currentTarget.style.transform="scale(0.93)"}}
-            onPointerUp={e=>{e.currentTarget.style.transform="scale(1)"}}
-            onPointerLeave={e=>{e.currentTarget.style.transform="scale(1)"}}
+            onPointerDown={e => { e.currentTarget.style.transform = "scale(0.93)" }}
+            onPointerUp={e => { e.currentTarget.style.transform = "scale(1)" }}
+            onPointerLeave={e => { e.currentTarget.style.transform = "scale(1)" }}
           >
-            <span style={{fontSize:48}}>{opt.icon}</span>
-            <span style={{fontSize:15,fontFamily:FT,fontWeight:800,color:BR,whiteSpace:"pre-line",lineHeight:1.3,textAlign:"center"}}>{opt.label}</span>
+            <span style={{ fontSize: 42 }}>{opt.icon}</span>
+            <span style={{ fontSize: 13, fontFamily: FT, fontWeight: 800, color: BR, whiteSpace: "pre-line", lineHeight: 1.3, textAlign: "center" }}>{opt.label}</span>
           </button>
         ))}
       </div>
     </>}
 
-    {/* Breathing */}
-    {phase==="breathing"&&<>
-      <p style={{fontSize:22,color:"#C0524E",fontWeight:800,margin:"12px 0 16px"}}>
-        {bPh==="in"?"🌸 Smell the flower...":"🕯️ Blow the candle..."}
+    {phase === "activity" && chosen === "breathing" && <>
+      <p style={{ fontSize: 22, color: "#C0524E", fontWeight: 800, margin: "12px 0 16px" }}>
+        {isSmell ? "🌸 Smell the flower..." : "🕯️ Blow the candle..."}
       </p>
       <div style={{
-        width:bSz,height:bSz,borderRadius:"50%",margin:"0 auto 16px",
-        background:bPh==="in"?"radial-gradient(circle,#FFB7B0,#FF8A80)":"radial-gradient(circle,#FFCC80,#FFB060)",
-        transition:"width 3.5s ease, height 3.5s ease",
-        display:"flex",alignItems:"center",justifyContent:"center",fontSize:36,
-      }}>{bPh==="in"?"🌸":"🕯️"}</div>
-      <p style={{fontSize:15,color:BL}}>{Math.min(bCy+1,3)} of 3</p>
+        width: circleSize, height: circleSize, borderRadius: "50%", margin: "0 auto 16px",
+        background: isSmell ? "radial-gradient(circle,#FFB7B0,#FF8A80)" : "radial-gradient(circle,#FFCC80,#FFB060)",
+        transition: "width 3s ease, height 3s ease, background 0.3s ease",
+        display: "flex", alignItems: "center", justifyContent: "center", fontSize: 36,
+      }}>{isSmell ? "🌸" : "🕯️"}</div>
+      <p style={{ fontSize: 15, color: BL }}>{Math.min(Math.floor(step / 2) + 1, 3)} of 3</p>
     </>}
 
-    {/* Squeeze */}
-    {phase==="squeeze"&&<>
-      <p style={{fontSize:24,color:"#E0922E",fontWeight:800,margin:"12px 0 16px"}}>
-        {sPh==="sq"?"✊ Squeeze tight!":sPh==="rel"?"🤲 Let it go...":"Getting ready..."}
+    {phase === "activity" && chosen === "squeeze" && <>
+      <p style={{ fontSize: 24, color: "#E0922E", fontWeight: 800, margin: "12px 0 16px" }}>
+        {squeezeStep === 0 ? "Getting ready..." : isSqueeze ? "✊ Squeeze tight!" : "🤲 Let it go..."}
       </p>
       <div style={{
-        fontSize:80,transition:"transform 3.5s ease",
-        transform:sPh==="sq"?"scale(0.7)":"scale(1.2)",
-      }}>{sPh==="sq"?"✊":"🤲"}</div>
-      <p style={{fontSize:15,color:BL,marginTop:16}}>{Math.min(sCy+1,2)} of 2</p>
+        fontSize: 80, transition: "transform 3.5s ease",
+        transform: isSqueeze ? "scale(0.7)" : "scale(1.2)",
+      }}>{isSqueeze ? "✊" : "🤲"}</div>
+      <p style={{ fontSize: 15, color: BL, marginTop: 16 }}>{squeezeStep <= 2 ? "1" : "2"} of 2</p>
     </>}
 
-    {/* Counting */}
-    {phase==="counting"&&<>
-      <p style={{fontSize:20,color:"#5B8BD4",fontWeight:800,margin:"12px 0 8px"}}>
-        Let's count together...
-      </p>
+    {phase === "activity" && chosen === "counting" && <>
+      <p style={{ fontSize: 20, color: "#5B8BD4", fontWeight: 800, margin: "12px 0 8px" }}>Let's count together...</p>
       <div style={{
-        fontSize:72,fontFamily:FT,fontWeight:900,color:"#5B8BD4",
-        margin:"8px 0",transition:"transform 0.3s ease",
-        transform:cNum>0?"scale(1)":"scale(0.5)",
-      }}>
-        {cNum>0?cNum:"..."}
-      </div>
-      {/* Visual dots */}
-      <div style={{display:"flex",gap:10,margin:"12px 0",justifyContent:"center"}}>
-        {[1,2,3,4,5].map(n=><div key={n} style={{
-          width:20,height:20,borderRadius:"50%",
-          background:n<=cNum?"#5B8BD4":"#D0D8E8",
-          transition:"background 0.3s ease, transform 0.3s ease",
-          transform:n===cNum?"scale(1.3)":"scale(1)",
-        }}/>)}
+        fontSize: 72, fontFamily: FT, fontWeight: 900, color: "#5B8BD4",
+        margin: "8px 0", transition: "transform 0.3s ease",
+        transform: countNum > 0 ? "scale(1)" : "scale(0.5)",
+      }}>{countNum > 0 ? countNum : "..."}</div>
+      <div style={{ display: "flex", gap: 10, margin: "12px 0", justifyContent: "center" }}>
+        {[1, 2, 3, 4, 5].map(n => <div key={n} style={{
+          width: 20, height: 20, borderRadius: "50%",
+          background: n <= countNum ? "#5B8BD4" : "#D0D8E8",
+          transition: "background 0.3s ease, transform 0.3s ease",
+          transform: n === countNum ? "scale(1.3)" : "scale(1)",
+        }} />)}
       </div>
     </>}
-
   </div></Pg>;
 }
 
@@ -938,11 +982,10 @@ function Squeeze({prof,vm,onDone}){
   useEffect(()=>()=>{m.current=false},[]);
   useEffect(()=>{(async()=>{await pv(P[0]);if(m.current)setPh("sq")})()},[]);
   useEffect(()=>{
-    if(ph==="sq"){(async()=>{await pv(P[1]);setTimeout(()=>{if(!m.current)return;setPh("re")},4000)})()}
-    if(ph==="re"){(async()=>{await pv(P[2]);setTimeout(()=>{if(!m.current)return;const n=cy+1;if(n>=3){setPh("done")}else{setCy(n);setPh("nextSq")}},4000)})()}
-    if(ph==="nextSq"){setPh("sq")}
+    if(ph==="sq"){(async()=>{await pv(P[1]);setTimeout(()=>m.current&&setPh("re"),4000)})()}
+    if(ph==="re"){(async()=>{await pv(P[2]);setTimeout(()=>{if(!m.current)return;const n=cy+1;setCy(n);setPh(n>=3?"done":"sq")},4000)})()}
     if(ph==="done")pv(P[3]);
-  },[ph,cy]);
+  },[ph]);
   if(ph==="done") return <DoneScreen prof={prof} onDone={onDone} bg="linear-gradient(160deg,#FFF6EC,#EEFFF3)" pc="#FFD0A0"/>;
   return <Pg bg="linear-gradient(160deg,#FFF6EC,#FFECD6)" pc="#FFD0A0"><div style={{animation:"gi .5s ease"}}>
     <Animal id={prof.animal.id} emotion="overwhelmed" size={100}/>
@@ -962,13 +1005,78 @@ function Celebrate({prof,vm,emo,onDone}){
   </div></Pg>;
 }
 
+function ListeningActivity({prof,vm,onDone}){
+  const pv=useV(prof,vm);
+  const[ph,setPh]=useState("intro");
+  const[listenStep,setListenStep]=useState(0);
+  const P=VP.listening;
+  const m=useRef(true);
+  useEffect(()=>()=>{m.current=false},[]);
+
+  useEffect(()=>{(async()=>{await pv(P[0]);if(m.current){setPh("teach");await pv(P[1])}})()},[]);
+
+  const stepIcons=["👀","👂","🧍","🌟"];
+  const stepLabels=["Use our eyes to look","Use our ears to hear","Keep our body still","Show your best listening!"];
+
+  const tapNext=async()=>{
+    const next=listenStep+1;
+    if(next>=4){
+      setListenStep(next);
+      setPh("done");
+      await pv(P[5]);
+    } else {
+      setListenStep(next);
+      await pv(P[next+1]);
+    }
+  };
+
+  const buddyEmo=ph==="done"?"happy":listenStep>=3?"calm":listenStep>=2?"neutral":"angry";
+
+  if(ph==="done") return <DoneScreen prof={prof} onDone={onDone} bg="linear-gradient(160deg,#FFF8F0,#EEFFF3)" pc="#FFD4A0"/>;
+  if(ph==="intro") return <IntroScreen prof={prof} emotion="angry" bg="linear-gradient(160deg,#FFF8F0,#FFECD6)" pc="#FFD4A0"/>;
+
+  return <Pg bg="linear-gradient(160deg,#FFF8F0,#FFECD6)" pc="#FFD4A0"><div style={{animation:"gi .5s ease",display:"flex",flexDirection:"column",alignItems:"center"}}>
+    <Animal id={prof.animal.id} emotion={buddyEmo} size={120}/>
+
+    <div style={{display:"flex",gap:8,margin:"16px 0 12px"}}>
+      {[0,1,2,3].map(i=><div key={i} style={{
+        width:14,height:14,borderRadius:"50%",
+        background:i<=listenStep?"#E8A033":"#E0D4C4",
+        opacity:i<=listenStep?1:0.4,
+        transition:"all 0.3s ease",
+        transform:i===listenStep?"scale(1.3)":"scale(1)",
+      }}/>)}
+    </div>
+
+    <div style={{fontSize:48,margin:"8px 0"}}>{stepIcons[Math.min(listenStep,3)]}</div>
+    <p style={{fontSize:18,color:"#E8A033",fontWeight:800,margin:"4px 0",textAlign:"center",maxWidth:300}}>
+      {stepLabels[Math.min(listenStep,3)]}
+    </p>
+
+    {listenStep<4&&<>
+      <p style={{fontSize:13,color:BL,marginTop:8,marginBottom:16}}>Tap when you've told them!</p>
+      <button onClick={tapNext} style={{
+        width:70,height:70,borderRadius:"50%",border:"none",
+        background:"linear-gradient(135deg,#FFD080,#E8A033)",
+        fontSize:32,cursor:"pointer",transition:"transform .15s",
+        boxShadow:"0 6px 18px rgba(232,160,51,0.4)",
+        display:"flex",alignItems:"center",justifyContent:"center",
+      }}
+        onPointerDown={e=>{e.currentTarget.style.transform="scale(0.9)"}}
+        onPointerUp={e=>{e.currentTarget.style.transform="scale(1.1)"}}
+        onPointerLeave={e=>{e.currentTarget.style.transform="scale(1)"}}
+      >👂</button>
+    </>}
+  </div></Pg>;
+}
+
 // ─── Voice Setup ─────────────────────────────────────────────
 // Build a flat map for voice recording organized by tabs
 const VOICE_TABS = [
   { id:"angry", label:"Angry", prompts:[VP.angry_intro,...VP.angry_breathing,...VP.angry_squeeze,...VP.angry_counting,VP.angry_done] },
   { id:"sad", label:"Sad", prompts:VP.sad },
   { id:"scared", label:"Scared", prompts:VP.scared },
-  { id:"happy", label:"Happy", prompts:VP.happy },
+  { id:"listening", label:"Listening", prompts:VP.listening },
 ];
 const ALL_PROMPTS = VOICE_TABS.flatMap(t=>t.prompts);
 
@@ -1058,7 +1166,7 @@ export default function GooseAndFriends(){
     if(a==="hug")return <SadActivity prof={prof} vm={vm} onDone={onD}/>;
     if(a==="grounding")return <Grounding prof={prof} vm={vm} onDone={onD}/>;
     if(a==="squeeze")return <Squeeze prof={prof} vm={vm} onDone={onD}/>;
-    if(a==="celebrate_happy"||a==="celebrate_calm")return <Celebrate prof={prof} vm={vm} emo={emo} onDone={onD}/>;
+    if(a==="listening")return <ListeningActivity prof={prof} vm={vm} onDone={onD}/>;
   }
   return <Pg><p style={{color:BR}}>Something went wrong</p><Btn onClick={()=>setSc("home")}>Go Home</Btn></Pg>;
 }
